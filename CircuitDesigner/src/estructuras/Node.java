@@ -1,38 +1,38 @@
 package estructuras;
 
-/*
- * 
+import logica.Compuerta;
+
+/**
+ * @author Chacón Campos
+ * Clase nodo
  */
-public class Node<T> {
-	private T data;
-	private Node<T> next;
+public class Node {
+	private Compuerta data;
+	private Node next;
 	
-	/*
-	 * 
-	 */
-	public Node(T dato) {
+	public Node(Compuerta dato) {
 		this.data = dato;
 		this.next = null;
 	}
 	
-	/*
-	 * 
+	/**
+	 *  Retorna el siguiente nodo
 	 */
-	public Node<T> getNext(){
+	public Node getNext(){
 		return this.next;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Establece el siguiente nodo
 	 */
-	public void setNext(Node<T> node) {
+	public void setNext(Node node) {
 		this.next = node;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Retorna el dato contenido en el nodo
 	 */
-	public T getData() {
+	public Compuerta getData() {
 		return this.data;
 	}
 }

@@ -1,45 +1,48 @@
 package estructuras;
 
-/*
- * 
+import logica.Compuerta;
+
+/**
+ * @author Chacón Campos
+ * Clase de listas enlazadas
  */
-public class List<T> {
-	private Node<T> head;
+public class List{
+	private Node head;
 	private int size;
 	
-	/*
-	 * 
-	 */
 	public List(){
 		this.head = null;
 		this.size = 0;
 	}
 	
-	public Node<T> getHead(){
+	/**
+	 * Retornar primer elemento
+	 */
+	public Node getHead(){
 		return this.head;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Añadir nodo
 	 */
-	public void addNode(Node<T> node) {
-		if (head.equals(null)) {
-			this.head = node;
+	public void addNode(Compuerta data) {
+		if (head == null) {
+			this.head = new Node(data);
 		} else {
-			Node<T> current = this.head;
+			Node current = this.head;
 			while(current.getNext() != null) {
 				current = current.getNext();
 			}
-			current.setNext(node);
+			current.setNext(new Node(data));
 		}
 		this.size++;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Eliminar nodo
 	 */
-	public void deleteNode(T data) {
-		Node<T> current = this.head;
+	public void deleteNode(Compuerta data) {
+		Node current = this.head;
 		if (current.getData() == data) {
 			this.head = this.head.getNext();
 		} else {
@@ -51,15 +54,54 @@ public class List<T> {
 		this.size--;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Retornar elemento con dato T
 	 */
-	public Node<T> getNode(T node){
-		if (this.head.getData() == node) {
+	public Node getNode(Compuerta data){
+		if (this.head.getData() == data) {
 			return this.head;
 		} else {
-			Node<T> current = this.head;
-			while(current.getData() != node) {
+			Node current = this.head;
+			while(current.getData() != data) {
+				current = current.getNext();
+			}
+			return current;
+		}
+	}
+	
+	/**
+	 * Regresa cantidad de nodos "activos"
+	 */
+	public int getActive() {
+		int active = 0;
+		Node current = this.getHead();
+		while(current != null) {
+			if (current.getData().getState() == true) {
+				active++;
+			}
+			current = current.getNext();
+		}
+		return active;
+	}
+	
+	/**
+	 * Regresa tamaño de la lista
+	 */
+	public int getSize() {
+		return this.size;
+	}
+	
+	/**
+	 * Regresa elemento en posición X
+	 */
+	public Node getNodeInPosition(int X) {
+		if (X > this.size) {
+			return null;
+		} else {
+			Node current = this.head;
+			int currentPos = 1;
+			while (currentPos != X) {
+				currentPos++;
 				current = current.getNext();
 			}
 			return current;
