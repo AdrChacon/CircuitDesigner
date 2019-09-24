@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ScreenController">
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -16,10 +15,16 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Circuit">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Clear screen" />
-                        <MenuItem mnemonicParsing="false" text="Exit" />
+                        <MenuItem fx:id="menuClear" mnemonicParsing="false" onAction="#menuClearScreenClicked" text="Clear screen" />
                      </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Gate">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Connect to Input" />
+                      <MenuItem mnemonicParsing="false" text="Connect to Output" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                  </Menu>
               </menus>
             </MenuBar>
          </children>
@@ -31,8 +36,12 @@
    <bottom>
       <HBox spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button mnemonicParsing="false" text="Save Circuit" />
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Truth Table" />
+            <Button fx:id="circuitSave" mnemonicParsing="false" text="Save Circuit" />
+            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Truth Table" />
+            <Region prefHeight="2.0" prefWidth="200.0" />
+            <Label fx:id="selectedNewGate" text="$gateSelected" />
+            <Region prefHeight="0.0" prefWidth="200.0" />
+            <Label fx:id="selectedGate" text="$newGate" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -40,7 +49,7 @@
       </HBox>
    </bottom>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="circuitPane" onMouseClicked="#circuitPaneClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <GridPane BorderPane.alignment="CENTER">
@@ -55,7 +64,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateAND" onMouseClicked="#chooseGateAND" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/AND.png" />
                </image>
@@ -63,7 +72,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/OR.png" />
                </image>
@@ -71,7 +80,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNOT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/NOT.png" />
                </image>
@@ -79,7 +88,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNAND" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -87,7 +96,7 @@
                   <Image url="@../resources/NAND.png" />
                </image>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateXNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -95,7 +104,7 @@
                   <Image url="@../resources/XNOR.png" />
                </image>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateXOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -103,7 +112,7 @@
                   <Image url="@../resources/XOR.png" />
                </image>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -111,7 +120,7 @@
                   <Image url="@../resources/NOR.png" />
                </image>
             </ImageView>
-            <ImageView pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateCUSTOM" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

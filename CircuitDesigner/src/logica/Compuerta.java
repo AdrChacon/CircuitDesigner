@@ -1,12 +1,13 @@
 package logica;
 
 import estructuras.List;
+import javafx.scene.image.ImageView;
 
 /**
  * @author Chacón Campos
  * Clase abstracta de las compuertas lógicas
  */
-public abstract class Compuerta {
+public abstract class Compuerta extends ImageView{
  protected boolean status;
  protected List inputList;
  protected List outputList;

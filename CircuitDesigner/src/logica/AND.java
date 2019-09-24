@@ -1,6 +1,5 @@
 package logica;
 
-import estructuras.Node;
 
 /**
  * @author Chacón Campos

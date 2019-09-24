@@ -18,7 +18,8 @@ public class Launcher extends Application{
 		primaryStage.setTitle("Circuit Designer");
 		primaryStage.setScene(new Scene(root, 800, 600));
 		primaryStage.show();
-		
 	}
+	
+
 
 }
