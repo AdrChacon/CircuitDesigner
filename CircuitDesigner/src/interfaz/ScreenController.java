@@ -1,10 +1,12 @@
 package interfaz;
 
 import estructuras.List;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import logica.*;
 
@@ -14,8 +16,9 @@ public class ScreenController{
 	public MenuItem menuClear, menuExit;
 	public Button circuitSave, circuitTruthTable;
 	public Label selectedGate, selectedNewGate;
-	public String gateSelected = "", newGate = "";
+	public String gateSelected = "", actionTaken = "";
 	public List currentCircuit;
+	public Compuerta currentGate;
 	
 	public void menuClearScreenClicked() {
 		currentCircuit = null;
@@ -23,24 +26,28 @@ public class ScreenController{
 	}
 	
 	public void circuitPaneClicked() {
-		if (newGate.equals("AND")) {
-			Image gate = new Image("resources/AND.png");
-			Compuerta ANDgate = new AND();
-			ANDgate.setImage(gate);
-			circuitPane.getChildren().addAll(ANDgate);
-			newGate = "";
-		} else {
-			System.out.println("No action selected");
-		}
+		System.out.println(gateSelected);
 	}
 	
-	public void chooseGateAND() {
-		newGate = "AND";
-		selectedNewGate.setText(newGate);
+	public void createGateAND() {
+		Image gate = new Image("resources/AND.png");
+		Compuerta ANDgate = new AND("TestGate");
+		ANDgate.setImage(gate);
+		ANDgate.setOnMouseClicked(e -> {
+			System.out.println(e.getX());
+			System.out.println(e.getY());
+			gateSelected = ANDgate.getID();});
+		ANDgate.setOnMouseDragged(e ->{
+			ANDgate.setTranslateX(e.getX());
+			ANDgate.setTranslateY(e.getY());
+			System.out.println("GateX:" + ANDgate.getX() + ", GateY:" + ANDgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + ANDgate.getLayoutX() + "ImageY:" + ANDgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(ANDgate);
+		actionTaken = "AND gate created";
 	}
 	
 	public void testMethod() {
 		System.out.println("*autistic screeching*");
 	}
-
+ 
 }

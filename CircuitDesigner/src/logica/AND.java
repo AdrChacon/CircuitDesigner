@@ -7,6 +7,10 @@ package logica;
  */
 public class AND extends Compuerta{
 
+	public AND(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if (inputList.getActive() != inputList.getSize()) {

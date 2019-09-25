@@ -7,7 +7,8 @@ package logica;
  */
 public class NOT extends Compuerta{
 	
-	public NOT() {
+	public NOT(String gateId) {
+		super(gateId);
 		this.status = true;
 	}
 

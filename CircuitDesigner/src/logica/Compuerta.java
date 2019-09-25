@@ -11,11 +11,16 @@ public abstract class Compuerta extends ImageView{
  protected boolean status;
  protected List inputList;
  protected List outputList;
+ protected String ID;
 
- public Compuerta() {
+ public Compuerta(String gateId) {
+	 ID = gateId;
 	 status = false;
 	 inputList = new List();
 	 outputList = new List();
+ }
+ public String getID() {
+	 return this.ID;
  }
  
  private void connectFromGate(Compuerta gate) {

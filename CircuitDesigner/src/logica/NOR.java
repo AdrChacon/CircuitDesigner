@@ -7,6 +7,10 @@ package logica;
  */
 public class NOR extends Compuerta{
 
+	public NOR(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if (inputList.getActive() != 0) {

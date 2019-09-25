@@ -7,6 +7,10 @@ package logica;
  */
 public class XOR extends Compuerta{
 
+	public XOR(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if (inputList.getActive()%2 == 1) {

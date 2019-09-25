@@ -7,6 +7,10 @@ package logica;
  */
 public class NAND extends Compuerta{
 
+	public NAND(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if(inputList.getActive() == inputList.getSize()) {

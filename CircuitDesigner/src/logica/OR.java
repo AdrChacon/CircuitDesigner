@@ -7,6 +7,10 @@ package logica;
  */
 public class OR extends Compuerta{
 
+	public OR(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if (inputList.getActive() == 0){

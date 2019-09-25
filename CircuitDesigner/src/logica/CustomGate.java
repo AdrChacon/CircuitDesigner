@@ -9,8 +9,8 @@ import estructuras.List;
 public class CustomGate extends Compuerta{
 	protected List circuitry;
 	
-	public CustomGate(List circuit) {
-		super();
+	public CustomGate(String gateId, List circuit) {
+		super(gateId);
 		this.circuitry = circuit;
 	}
 

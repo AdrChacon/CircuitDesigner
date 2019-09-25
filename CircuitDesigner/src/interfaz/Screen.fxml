@@ -39,7 +39,7 @@
             <Button fx:id="circuitSave" mnemonicParsing="false" text="Save Circuit" />
             <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Truth Table" />
             <Region prefHeight="2.0" prefWidth="200.0" />
-            <Label fx:id="selectedNewGate" text="$gateSelected" />
+            <Label fx:id="selectedNewGate" text="$actionTaken" />
             <Region prefHeight="0.0" prefWidth="200.0" />
             <Label fx:id="selectedGate" text="$newGate" />
          </children>
@@ -64,7 +64,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="gateAND" onMouseClicked="#chooseGateAND" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateAND" onMouseClicked="#createGateAND" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/AND.png" />
                </image>

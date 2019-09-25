@@ -7,6 +7,10 @@ package logica;
  */
 public class XNOR extends Compuerta{
 
+	public XNOR(String gateId) {
+		super(gateId);
+	}
+
 	@Override
 	public void verifyState() {
 		if(inputList.getActive()%2 == 0) {
