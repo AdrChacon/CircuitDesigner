@@ -45,9 +45,5 @@ public class ScreenController{
 		circuitPane.getChildren().addAll(ANDgate);
 		actionTaken = "AND gate created";
 	}
-	
-	public void testMethod() {
-		System.out.println("*autistic screeching*");
-	}
  
 }
