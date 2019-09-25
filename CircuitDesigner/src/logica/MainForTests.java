@@ -7,14 +7,14 @@ public class MainForTests {
 	public static void main(String[] args) {
 		List CircuitoTest = new List();
 		
-		Compuerta AND1 = new AND();
-		Compuerta OR1 = new OR();
-		Compuerta AND2 = new AND();
-		Compuerta NOT1 = new NOT();
-		Compuerta NOT2 = new NOT();
-		Compuerta NOT3 = new NOT();
-		Compuerta XOR1 = new XOR();
-		Compuerta NAND1 = new NAND();
+		Compuerta AND1 = new AND("Gate" + CircuitoTest.getSize());
+		Compuerta OR1 = new OR("Gate" + CircuitoTest.getSize());
+		Compuerta AND2 = new AND("Gate" + CircuitoTest.getSize());
+		Compuerta NOT1 = new NOT("Gate" + CircuitoTest.getSize());
+		Compuerta NOT2 = new NOT("Gate" + CircuitoTest.getSize());
+		Compuerta NOT3 = new NOT("Gate" + CircuitoTest.getSize());
+		Compuerta XOR1 = new XOR("Gate" + CircuitoTest.getSize());
+		Compuerta NAND1 = new NAND("Gate" + CircuitoTest.getSize());
 		
 		
 		CircuitoTest.addNode(AND1);

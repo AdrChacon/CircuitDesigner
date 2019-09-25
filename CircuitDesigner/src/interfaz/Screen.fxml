@@ -37,7 +37,7 @@
       <HBox spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
             <Button fx:id="circuitSave" mnemonicParsing="false" text="Save Circuit" />
-            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Truth Table" />
+            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#testingMethod" text="Truth Table" />
             <Region prefHeight="2.0" prefWidth="200.0" />
             <Label fx:id="selectedNewGate" text="$actionTaken" />
             <Region prefHeight="0.0" prefWidth="200.0" />
@@ -72,7 +72,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView fx:id="gateOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateOR" onMouseClicked="#createGateOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/OR.png" />
                </image>
@@ -80,7 +80,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView fx:id="gateNOT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNOT" onMouseClicked="#createGateNOT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <image>
                   <Image url="@../resources/NOT.png" />
                </image>
@@ -88,7 +88,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <ImageView fx:id="gateNAND" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNAND" onMouseClicked="#createGateNAND" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -96,7 +96,7 @@
                   <Image url="@../resources/NAND.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gateXNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateXNOR" onMouseClicked="#createGateXNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -104,7 +104,7 @@
                   <Image url="@../resources/XNOR.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gateXOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateXOR" onMouseClicked="#createGateXOR" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -112,7 +112,7 @@
                   <Image url="@../resources/XOR.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gateNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateNOR" onMouseClicked="#createGateNOR" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -120,7 +120,7 @@
                   <Image url="@../resources/NOR.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="gateCUSTOM" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="gateCUSTOM" onMouseClicked="#createGateCustom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
