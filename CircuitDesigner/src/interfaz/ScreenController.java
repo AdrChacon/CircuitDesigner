@@ -19,6 +19,7 @@ public class ScreenController{
 	public String gateSelected = "", actionTaken = "";
 	public List currentCircuit = new List();
 	public Compuerta currentGate;
+	public Compuerta savedGate;
 	
 	public void menuClearScreenClicked() {
 		currentCircuit = new List();
@@ -183,6 +184,41 @@ public class ScreenController{
 	
 	public void createGateCustom() {
 		actionTaken = "Gate not implemented yet";
+		selectedNewGate.setText(actionTaken);
+	}
+	
+	public void createLED() {
+		Compuerta LEDgate = new LED("LED" + currentCircuit.getSize());
+		LEDgate.setOnMouseDragged(e -> {
+			LEDgate.setTranslateX(e.getX());
+			LEDgate.setTranslateY(e.getY());
+		});
+		circuitPane.getChildren().addAll(LEDgate);
+		currentCircuit.addNode(LEDgate);
+		actionTaken = "LED created";
+		selectedNewGate.setText(actionTaken);
+	}
+	
+	public void createSwitch() {
+		Compuerta Switchgate = new Switch("Switch" + currentCircuit.getSize());
+		Switchgate.setOnMouseDragged(e -> {
+			Switchgate.setTranslateX(e.getX());
+			Switchgate.setTranslateY(e.getY());
+		});
+		Switchgate.setOnMouseClicked(e -> {
+			if (Switchgate.getState()) {
+				Switchgate.deactivateGate();
+			} else {
+				Switchgate.activateGate();
+			}
+			System.out.println(e.getX());
+			System.out.println(e.getY());
+			currentGate = Switchgate;
+			gateSelected = Switchgate.getID();
+			selectedGate.setText(gateSelected);});
+		circuitPane.getChildren().addAll(Switchgate);
+		currentCircuit.addNode(Switchgate);
+		actionTaken = "Switch created";
 		selectedNewGate.setText(actionTaken);
 	}
 	

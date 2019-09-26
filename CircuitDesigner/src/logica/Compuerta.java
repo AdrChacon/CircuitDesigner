@@ -61,7 +61,7 @@ public abstract class Compuerta extends ImageView{
  }
 
  /**
-  * Método de prueba 
+  * Método "activa" la compuerta
   */
  public void activateGate() {
 	 this.status = true;
@@ -69,7 +69,7 @@ public abstract class Compuerta extends ImageView{
  }
  
  /**
-  * Método de prueba
+  * Método "desactiva" la compuerta
   */
  public void deactivateGate() {
 	 this.status = false;
