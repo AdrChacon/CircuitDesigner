@@ -21,9 +21,9 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Gate">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Connect to Input" />
-                      <MenuItem mnemonicParsing="false" text="Connect to Output" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#connectGateInput" text="Connect to Input" />
+                      <MenuItem mnemonicParsing="false" onAction="#connectGateOutput" text="Connect to Output" />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteGate" text="Delete" />
                     </items>
                   </Menu>
               </menus>
@@ -37,8 +37,8 @@
    <bottom>
       <HBox spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button fx:id="circuitSave" mnemonicParsing="false" text="Save Circuit" />
-            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#testingMethod" text="Truth Table" />
+            <Button fx:id="circuitSave" mnemonicParsing="false" onAction="#saveCircuit" text="Save Circuit" />
+            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#showTruthTable" text="Truth Table" />
             <Region prefHeight="2.0" prefWidth="200.0" />
             <Label fx:id="selectedNewGate" text="$actionTaken" />
             <Region prefHeight="0.0" prefWidth="200.0" />

@@ -82,4 +82,8 @@ public abstract class Compuerta extends ImageView{
  public abstract void verifyState();
  
  public abstract boolean getState();
+ 
+ public int getInputListSize() {
+	 return this.inputList.getSize();
+ }
 }
