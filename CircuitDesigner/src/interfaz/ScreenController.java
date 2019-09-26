@@ -20,6 +20,7 @@ public class ScreenController{
 	public List currentCircuit = new List();
 	public Compuerta currentGate;
 	public Compuerta savedGate;
+	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
 	
 	public void menuClearScreenClicked() {
 		currentCircuit = new List();
@@ -39,6 +40,12 @@ public class ScreenController{
 		Image gate = new Image("resources/AND.png");
 		Compuerta ANDgate = new AND("ANDGate" + (currentCircuit.getSize()));
 		ANDgate.setImage(gate);
+		ANDgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = ANDgate.getTranslateX();
+			gateCoordinateY = ANDgate.getTranslateY();
+		});
 		ANDgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -46,8 +53,12 @@ public class ScreenController{
 			gateSelected = ANDgate.getID();
 			selectedGate.setText(gateSelected);});
 		ANDgate.setOnMouseDragged(e ->{
-			ANDgate.setTranslateX(e.getX());
-			ANDgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			ANDgate.setTranslateX(dX);
+			ANDgate.setTranslateY(dY);
 			System.out.println("GateX:" + ANDgate.getX() + ", GateY:" + ANDgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + ANDgate.getLayoutX() + "ImageY:" + ANDgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(ANDgate);
@@ -60,6 +71,12 @@ public class ScreenController{
 		Image gate = new Image("resources/OR.png");
 		Compuerta ORgate = new OR("ORGate" + (currentCircuit.getSize()));
 		ORgate.setImage(gate);
+		ORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = ORgate.getTranslateX();
+			gateCoordinateY = ORgate.getTranslateY();
+		});
 		ORgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -67,8 +84,12 @@ public class ScreenController{
 			gateSelected = ORgate.getID();
 			selectedGate.setText(gateSelected);});
 		ORgate.setOnMouseDragged(e ->{
-			ORgate.setTranslateX(e.getX());
-			ORgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			ORgate.setTranslateX(dX);
+			ORgate.setTranslateY(dY);
 			System.out.println("GateX:" + ORgate.getX() + ", GateY:" + ORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + ORgate.getLayoutX() + "ImageY:" + ORgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(ORgate);
@@ -81,6 +102,12 @@ public class ScreenController{
 		Image gate = new Image("resources/NOT.png");
 		Compuerta NOTgate = new NOT("NOTGate" + (currentCircuit.getSize()));
 		NOTgate.setImage(gate);
+		NOTgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NOTgate.getTranslateX();
+			gateCoordinateY = NOTgate.getTranslateY();
+		});
 		NOTgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -88,8 +115,12 @@ public class ScreenController{
 			gateSelected = NOTgate.getID();
 			selectedGate.setText(gateSelected);});
 		NOTgate.setOnMouseDragged(e ->{
-			NOTgate.setTranslateX(e.getX());
-			NOTgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NOTgate.setTranslateX(dX);
+			NOTgate.setTranslateY(dY);
 			System.out.println("GateX:" + NOTgate.getX() + ", GateY:" + NOTgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NOTgate.getLayoutX() + "ImageY:" + NOTgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(NOTgate);
@@ -102,6 +133,12 @@ public class ScreenController{
 		Image gate = new Image("resources/NAND.png");
 		Compuerta NANDgate = new NAND("NANDGate" + (currentCircuit.getSize()));
 		NANDgate.setImage(gate);
+		NANDgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NANDgate.getTranslateX();
+			gateCoordinateY = NANDgate.getTranslateY();
+		});
 		NANDgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -109,8 +146,12 @@ public class ScreenController{
 			gateSelected = NANDgate.getID();
 			selectedGate.setText(gateSelected);});
 		NANDgate.setOnMouseDragged(e ->{
-			NANDgate.setTranslateX(e.getX());
-			NANDgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NANDgate.setTranslateX(dX);
+			NANDgate.setTranslateY(dY);
 			System.out.println("GateX:" + NANDgate.getX() + ", GateY:" + NANDgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NANDgate.getLayoutX() + "ImageY:" + NANDgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(NANDgate);
@@ -123,6 +164,12 @@ public class ScreenController{
 		Image gate = new Image("resources/NOR.png");
 		Compuerta NORgate = new NOR("NORGate" + (currentCircuit.getSize()));
 		NORgate.setImage(gate);
+		NORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NORgate.getTranslateX();
+			gateCoordinateY = NORgate.getTranslateY();
+		});
 		NORgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -130,8 +177,12 @@ public class ScreenController{
 			gateSelected = NORgate.getID();
 			selectedGate.setText(gateSelected);});
 		NORgate.setOnMouseDragged(e ->{
-			NORgate.setTranslateX(e.getX());
-			NORgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NORgate.setTranslateX(dX);
+			NORgate.setTranslateY(dY);
 			System.out.println("GateX:" + NORgate.getX() + ", GateY:" + NORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NORgate.getLayoutX() + "ImageY:" + NORgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(NORgate);
@@ -144,6 +195,12 @@ public class ScreenController{
 		Image gate = new Image("resources/XNOR.png");
 		Compuerta XNORgate = new XNOR("XNORGate" + (currentCircuit.getSize()));
 		XNORgate.setImage(gate);
+		XNORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = XNORgate.getTranslateX();
+			gateCoordinateY = XNORgate.getTranslateY();
+		});
 		XNORgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -151,8 +208,12 @@ public class ScreenController{
 			gateSelected = XNORgate.getID();
 			selectedGate.setText(gateSelected);});
 		XNORgate.setOnMouseDragged(e ->{
-			XNORgate.setTranslateX(e.getX());
-			XNORgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			XNORgate.setTranslateX(dX);
+			XNORgate.setTranslateY(dY);
 			System.out.println("GateX:" + XNORgate.getX() + ", GateY:" + XNORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + XNORgate.getLayoutX() + "ImageY:" + XNORgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(XNORgate);
@@ -165,6 +226,12 @@ public class ScreenController{
 		Image gate = new Image("resources/XOR.png");
 		Compuerta XORgate = new XOR("XORGate" + (currentCircuit.getSize()));
 		XORgate.setImage(gate);
+		XORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = XORgate.getTranslateX();
+			gateCoordinateY = XORgate.getTranslateY();
+		});
 		XORgate.setOnMouseClicked(e -> {
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -172,8 +239,12 @@ public class ScreenController{
 			gateSelected = XORgate.getID();
 			selectedGate.setText(gateSelected);});
 		XORgate.setOnMouseDragged(e ->{
-			XORgate.setTranslateX(e.getX());
-			XORgate.setTranslateY(e.getY());
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			XORgate.setTranslateX(dX);
+			XORgate.setTranslateY(dY);
 			System.out.println("GateX:" + XORgate.getX() + ", GateY:" + XORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + XORgate.getLayoutX() + "ImageY:" + XORgate.getLayoutY());
 		});
 		circuitPane.getChildren().addAll(XORgate);
