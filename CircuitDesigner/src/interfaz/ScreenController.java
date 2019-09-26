@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import logica.*;
@@ -19,10 +20,10 @@ public class ScreenController{
 	public String gateSelected = "", actionTaken = "";
 	public List currentCircuit = new List();
 	public Compuerta currentGate;
-	//public Compuerta targetGate;
 	public boolean connectInput = false, connectOutput = false;
 	public Compuerta savedGate;
 	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
+	public ImageView gateCUSTOM;
 	
 	public void menuClearScreenClicked() {
 		currentCircuit = new List();
@@ -285,6 +286,7 @@ public class ScreenController{
 	
 	public void createGateCustom() {
 		setActionLabelText("Gate not implemented yet");
+		System.out.println(savedGate);
 	}
 	
 	public void createLED() {
@@ -361,8 +363,10 @@ public class ScreenController{
 	}
 	
 	private void testingMethod() {
-		for(int Pos = 1; Pos <= currentCircuit.getSize(); Pos++) {
-			System.out.println(currentCircuit.getNodeInPosition(Pos).getData().getID());
+		if (currentCircuit.getSize() != 0) {
+			for(int Pos = 1; Pos <= currentCircuit.getSize(); Pos++) {
+				System.out.println(currentCircuit.getNodeInPosition(Pos).getData().getID());
+			}
 		}
 	}
 	
@@ -399,11 +403,21 @@ public class ScreenController{
 	}
 	
 	public void deleteGate() {
-		
+		currentGate.deleteSelf();
+		currentCircuit.deleteNode(currentGate);
+		circuitPane.getChildren().removeAll(currentGate);
+		currentGate = null;
+		setActionLabelText("Gate deleted");
+		setSelectedGateText("");
 	}
 	
 	public void saveCircuit() {
-		
+		savedGate = new CustomGate("CustomGate", currentCircuit);
+		gateCUSTOM.setOpacity(1);
+		currentCircuit = new List();
+		circuitPane.getChildren().clear();	
+		setActionLabelText("Circuit Saved!");
+		setSelectedGateText("No gate selected");
 	}
 	
 	public void showTruthTable() {

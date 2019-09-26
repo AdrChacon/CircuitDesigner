@@ -46,12 +46,19 @@ public class List{
 		if (current.getData() == data) {
 			this.head = this.head.getNext();
 		} else {
-			while(current.getNext().getData() != data) {
-				current = current.getNext();
+			while (current != null) {
+				if (current.getNext() != null) {
+						if(current.getNext().getData() != data) {
+								current = current.getNext();
+						} else {
+							current.setNext(current.getNext().getNext());
+							this.size--;
+						}
+				} else {
+					current = current.getNext();
+				}
 			}
-			current.setNext(current.getNext().getNext());
 		}
-		this.size--;
 	}
 	
 	/**

@@ -83,7 +83,48 @@ public abstract class Compuerta extends ImageView{
  
  public abstract boolean getState();
  
+ /**
+  * Retorna el tamaño de la lista de inputs de la compuerta
+  * @return Int
+  */
  public int getInputListSize() {
 	 return this.inputList.getSize();
  }
-}
+ 
+ /**
+  * Retorna la lista de inputs de la compuerta
+  * @return List
+  */
+ public List getInputList() {
+	 return this.inputList;
+ }
+ 
+ /**
+  * Retorna el tamaño de la lista de inputs de la compuerta
+  * @return
+  */
+ public int getOutputListSize() {
+	 return outputList.getSize();
+ }
+ 
+ /**
+  * Retorna la lista de los outputs de la compuerta
+  * @return
+  */
+ public List getOutputList() {
+	 return this.outputList;
+ }
+ 
+ public void deleteSelf() {
+ 	for (int i = 1; i <= outputList.getSize(); i++) {
+ 		if (outputList.getNodeInPosition(i).getData().getOutputList() != null) {
+ 			outputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);	
+ 		}
+ 		
+ 	}
+ 	for (int i = 1; i <= inputList.getSize(); i++) {
+ 		if (inputList.getNodeInPosition(i).getData().getOutputList() != null)
+ 		inputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);
+ 		}
+ 	}
+ }
