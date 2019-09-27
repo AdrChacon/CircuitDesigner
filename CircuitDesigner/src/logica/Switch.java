@@ -2,6 +2,11 @@ package logica;
 
 import javafx.scene.image.Image;
 
+/**
+ * Compuerta que representa un interruptor; activa cuando se enciende, inactiva cuando se apaga, solo tiene outputs.
+ * @author Chacón Campos
+ *
+ */
 public class Switch extends Compuerta{
 	private Image offSwitch = new Image("resources/inputOFF.png");
 	private Image onSwitch = new Image("resources/inputON.png");

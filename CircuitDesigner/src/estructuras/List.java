@@ -3,7 +3,9 @@ package estructuras;
 import logica.Compuerta;
 
 /**
+ *
  * @author Chacón Campos
+ * 
  * Clase de listas enlazadas
  */
 public class List{

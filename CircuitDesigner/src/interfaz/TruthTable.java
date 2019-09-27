@@ -28,6 +28,11 @@ public class TruthTable {
 		this.rows = (int) Math.pow(2, inputsList.getSize());
 		this.columns = circuitry.getSize();
 	}
+	
+	/**
+	 * Crea la ventana para la tabla de verdad, calcula los valores de verdad
+	 * y los muestra en pantalla
+	 */
 	public void launch() {
 		VBox vbox = new VBox();
 		inputsList.resetBinaryCounter();

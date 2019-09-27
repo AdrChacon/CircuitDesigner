@@ -2,6 +2,11 @@ package logica;
 
 import javafx.scene.image.Image;
 
+/**
+ * Compuerta que representa un LED; encendido cuando esta activa, apagado cuando no lo esta, solo tiene inputs.
+ * @author Chacón Campos
+ *
+ */
 public class LED extends Compuerta{
 	private Image offLED = new Image("resources/LEDoff.png");
 	private Image onLED = new Image("resources/LEDon.png");
