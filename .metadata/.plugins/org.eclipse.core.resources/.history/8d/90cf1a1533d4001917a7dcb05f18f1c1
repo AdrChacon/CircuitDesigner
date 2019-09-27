@@ -1,0 +1,36 @@
+package ObserverExample;
+
+/**
+ *  Esta es la clase concreta LoTRclient, estos son los observadores interesados en los libros de
+ *  Lord of the Rings.
+ * @author Chacón Campos
+ *
+ */
+public class LoTRclient extends Cliente{
+
+	public LoTRclient(Libreria subject) {
+		this.subject = subject;
+		this.subject.attach(this);
+		this.cantidadActual = subject.getLordOfTheRings();
+	}
+	
+	/**
+	 * 
+	 */
+	public void update() {
+		if (cantidadActual == 0 && subject.getLordOfTheRings() > 0) {
+			System.out.println("LOTR Client: Great! I'll reserve a copy soon");
+		}
+		this.cantidadActual = subject.getLordOfTheRings();
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void buyBook() {
+		subject.sellLOTR();
+		
+	}
+
+}

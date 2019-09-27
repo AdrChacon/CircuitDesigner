@@ -1,0 +1,5 @@
+package ObserverExample;
+
+public class GoTclient extends Cliente{
+
+}

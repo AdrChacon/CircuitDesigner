@@ -1,0 +1,27 @@
+package ObserverExample;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Libreria LibreriaCartago = new Libreria();
+		
+		new LoTRclient(LibreriaCartago);
+		new GoTclient(LibreriaCartago);
+		new DWclient(LibreriaCartago);
+		
+		
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+	}
+
+}

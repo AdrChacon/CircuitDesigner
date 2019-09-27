@@ -1,0 +1,71 @@
+package interfaz;
+
+import java.util.Iterator;
+
+import estructuras.List;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import logica.Compuerta;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class TruthTable {
+	private List circuitry;
+	private List inputsList;
+	private int rows;
+	private int columns;
+	
+	public TruthTable(List circuit) {
+		this.circuitry = circuit;
+		this.inputsList = circuit.findInputGates();
+		this.rows = (int) Math.pow(2, inputsList.getSize());
+		this.columns = circuitry.getSize();
+	}
+	public void launch() {
+		VBox vbox = new VBox();
+		inputsList.resetBinaryCounter();
+		Label title = new Label();
+		String truthTable = "Truth Table";
+		title.setText(truthTable);
+		vbox.getChildren().add(title);
+		truthTable = "";
+		HBox hbox = new HBox();
+		hbox.setSpacing(5);
+		for (int i = 1; i <= columns; i++) {
+			Label column = new Label();
+			column.setText("|  " +circuitry.getNodeInPosition(i).getData().getID());
+			hbox.getChildren().add(column);
+		}
+		vbox.getChildren().add(hbox);
+		for (int i = 1; i <= rows; i++) {
+			for (int j = 1; j <= columns; j++) {
+				if (j == circuitry.getSize()) {
+					truthTable += "|      "+circuitry.getNodeInPosition(j).getData().getActive() + "       |";
+				} else {
+					truthTable+= "|      "+ circuitry.getNodeInPosition(j).getData().getActive() + "       ";
+				}
+			}
+			Label row = new Label();
+			row.setText(truthTable);
+			vbox.getChildren().add(row);
+			inputsList.pseudoBinaryCounter();
+			truthTable = "";
+		}
+		
+		Stage stage = new Stage();
+		Scene scene = new Scene(vbox);
+		
+		stage.setScene(scene);
+		stage.setTitle("Truth Table");
+		stage.show();
+		
+	}
+	
+}

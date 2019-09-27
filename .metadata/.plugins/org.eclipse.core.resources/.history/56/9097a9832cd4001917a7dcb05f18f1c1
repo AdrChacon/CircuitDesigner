@@ -1,0 +1,35 @@
+package ObserverExample;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Libreria LibreriaCartago = new Libreria();
+		
+		new LoTRclient(LibreriaCartago);
+		new GoTclient(LibreriaCartago);
+		new DWclient(LibreriaCartago);
+		
+		System.out.println("Cantidad de libros de GoT: " + LibreriaCartago.getGameOfThrones());
+		System.out.println("Cantidad de libros de LOTR: " + LibreriaCartago.getLordOfTheRings());
+		System.out.println("Cantidad de libros de DW: " + LibreriaCartago.getDiscWorld());
+		
+		
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		LibreriaCartago.restockDW();
+		LibreriaCartago.restockGOT();
+		LibreriaCartago.restockLOTR();
+		
+		System.out.println("Cantidad de libros de GoT: " + LibreriaCartago.getGameOfThrones());
+		System.out.println("Cantidad de libros de LOTR: " + LibreriaCartago.getLordOfTheRings());
+		System.out.println("Cantidad de libros de DW: " + LibreriaCartago.getDiscWorld());
+	}
+
+}

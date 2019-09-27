@@ -1,0 +1,20 @@
+package estructuras;
+
+public class DoubleLinkedList {
+	private Node head;
+	private Node last;
+	private Node size;
+	
+	public DoubleLinkedList() {
+		this.head = null;
+		this.size = 0;
+	}
+	
+	public addNode(Compuerta data) {
+		if (head == null) {
+			this.head = 
+		}
+		
+	}
+
+}

@@ -1,0 +1,463 @@
+package interfaz;
+
+import estructuras.List;
+import java.util.Random;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import logica.*;
+
+public class ScreenController{
+	
+	public Pane circuitPane;
+	public MenuItem menuClear, menuExit;
+	public Button circuitSave, circuitTruthTable;
+	public Label selectedGate, selectedNewGate;
+	public String gateSelected = "", actionTaken = "";
+	public List currentCircuit = new List();
+	public Compuerta currentGate;
+	public boolean connectInput = false, connectOutput = false;
+	public Compuerta savedGate;
+	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
+	public ImageView gateCUSTOM;
+	public Random r = new Random();
+	
+	public void menuClearScreenClicked() {
+		currentCircuit = new List();
+		circuitPane.getChildren().clear();	
+		setActionLabelText("Screen cleared");
+		setSelectedGateText("No gate selected");
+		
+	}
+	
+	public void circuitPaneClicked() {
+		testingMethod();
+	}
+	
+	public void createGateAND() {
+		Image gate = new Image("resources/AND.png");
+		Compuerta ANDgate = new AND("ANDGate" + (currentCircuit.getSize()));
+		ANDgate.setImage(gate);
+		ANDgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = ANDgate.getTranslateX();
+			gateCoordinateY = ANDgate.getTranslateY();
+		});
+		ANDgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				inputConnectGates(ANDgate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(ANDgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = ANDgate;
+			setSelectedGateText(ANDgate.getID());
+		}});
+		ANDgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			ANDgate.setTranslateX(dX);
+			ANDgate.setTranslateY(dY);
+			System.out.println("GateX:" + ANDgate.getX() + ", GateY:" + ANDgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + ANDgate.getLayoutX() + "ImageY:" + ANDgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(ANDgate);
+		currentCircuit.addNode(ANDgate);
+		setActionLabelText("AND gate created");
+	}
+
+	public void createGateOR() {
+		Image gate = new Image("resources/OR.png");
+		Compuerta ORgate = new OR("ORGate" + (currentCircuit.getSize()));
+		ORgate.setImage(gate);
+		ORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = ORgate.getTranslateX();
+			gateCoordinateY = ORgate.getTranslateY();
+		});
+		ORgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				inputConnectGates(ORgate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(ORgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = ORgate;
+			setSelectedGateText(ORgate.getID());
+			}});
+		ORgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			ORgate.setTranslateX(dX);
+			ORgate.setTranslateY(dY);
+			System.out.println("GateX:" + ORgate.getX() + ", GateY:" + ORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + ORgate.getLayoutX() + "ImageY:" + ORgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(ORgate);
+		currentCircuit.addNode(ORgate);
+		setActionLabelText("OR gate created");
+	}
+	
+	public void createGateNOT() {
+		Image gate = new Image("resources/NOT.png");
+		Compuerta NOTgate = new NOT("NOTGate" + (currentCircuit.getSize()));
+		NOTgate.setImage(gate);
+		NOTgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NOTgate.getTranslateX();
+			gateCoordinateY = NOTgate.getTranslateY();
+		});
+		NOTgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				if (NOTgate.getInputListSize() >= 1) {
+					setActionLabelText("NOT gate allows 1 input only");
+					connectInput = false;
+				} else {
+				inputConnectGates(NOTgate, currentGate);
+				connectInput = false;
+				}} else if (connectOutput) {
+				outputConnectGates(NOTgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = NOTgate;
+			setSelectedGateText(NOTgate.getID());
+			}});
+		NOTgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NOTgate.setTranslateX(dX);
+			NOTgate.setTranslateY(dY);
+			System.out.println("GateX:" + NOTgate.getX() + ", GateY:" + NOTgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NOTgate.getLayoutX() + "ImageY:" + NOTgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(NOTgate);
+		currentCircuit.addNode(NOTgate);
+		setActionLabelText("NOT gate created");
+	}
+	
+	public void createGateNAND() {
+		Image gate = new Image("resources/NAND.png");
+		Compuerta NANDgate = new NAND("NANDGate" + (currentCircuit.getSize()));
+		NANDgate.setImage(gate);
+		NANDgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NANDgate.getTranslateX();
+			gateCoordinateY = NANDgate.getTranslateY();
+		});
+		NANDgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				
+			} else if (connectOutput) {
+				
+			} else {
+			currentGate = NANDgate;
+			setSelectedGateText(NANDgate.getID());
+			}});
+		NANDgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NANDgate.setTranslateX(dX);
+			NANDgate.setTranslateY(dY);
+			System.out.println("GateX:" + NANDgate.getX() + ", GateY:" + NANDgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NANDgate.getLayoutX() + "ImageY:" + NANDgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(NANDgate);
+		currentCircuit.addNode(NANDgate);
+		setActionLabelText("NAND gate created");
+	}
+	
+	public void createGateNOR() {
+		Image gate = new Image("resources/NOR.png");
+		Compuerta NORgate = new NOR("NORGate" + (currentCircuit.getSize()));
+		NORgate.setImage(gate);
+		NORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = NORgate.getTranslateX();
+			gateCoordinateY = NORgate.getTranslateY();
+		});
+		NORgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				inputConnectGates(NORgate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(NORgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = NORgate;
+			setSelectedGateText(NORgate.getID());
+			}});
+		NORgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			NORgate.setTranslateX(dX);
+			NORgate.setTranslateY(dY);
+			System.out.println("GateX:" + NORgate.getX() + ", GateY:" + NORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + NORgate.getLayoutX() + "ImageY:" + NORgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(NORgate);
+		currentCircuit.addNode(NORgate);
+		setActionLabelText("NOR gate created");
+	}
+	
+	public void createGateXNOR() {
+		Image gate = new Image("resources/XNOR.png");
+		Compuerta XNORgate = new XNOR("XNORGate" + (currentCircuit.getSize()));
+		XNORgate.setImage(gate);
+		XNORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = XNORgate.getTranslateX();
+			gateCoordinateY = XNORgate.getTranslateY();
+		});
+		XNORgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				inputConnectGates(XNORgate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(XNORgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = XNORgate;
+			setSelectedGateText(XNORgate.getID());
+			}});
+		XNORgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			XNORgate.setTranslateX(dX);
+			XNORgate.setTranslateY(dY);
+			System.out.println("GateX:" + XNORgate.getX() + ", GateY:" + XNORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + XNORgate.getLayoutX() + "ImageY:" + XNORgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(XNORgate);
+		currentCircuit.addNode(XNORgate);
+		setActionLabelText("XNOR gate created");
+	}
+	
+	public void createGateXOR() {
+		Image gate = new Image("resources/XOR.png");
+		Compuerta XORgate = new XOR("XORGate" + (currentCircuit.getSize()));
+		XORgate.setImage(gate);
+		XORgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = XORgate.getTranslateX();
+			gateCoordinateY = XORgate.getTranslateY();
+		});
+		XORgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				inputConnectGates(XORgate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(XORgate, currentGate);
+				connectOutput = false;
+			} else {
+			currentGate = XORgate;
+			setSelectedGateText(XORgate.getID());
+			}});
+		XORgate.setOnMouseDragged(e ->{
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			XORgate.setTranslateX(dX);
+			XORgate.setTranslateY(dY);
+			System.out.println("GateX:" + XORgate.getX() + ", GateY:" + XORgate.getY() + ", MouseX:" + e.getX() + "MouseY:"+ e.getY() + "ImageX:" + XORgate.getLayoutX() + "ImageY:" + XORgate.getLayoutY());
+		});
+		circuitPane.getChildren().addAll(XORgate);
+		currentCircuit.addNode(XORgate);
+		setActionLabelText("XOR gate created");
+	}
+	
+	public void createGateCustom() {
+		setActionLabelText("Gate not implemented yet");
+		System.out.println(savedGate);
+	}
+	
+	public void createLED() {
+		Compuerta LEDgate = new LED("LED" + currentCircuit.getSize());
+		LEDgate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = LEDgate.getTranslateX();
+			gateCoordinateY = LEDgate.getTranslateY();
+		});
+		LEDgate.setOnMouseDragged(e -> {
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			LEDgate.setTranslateX(dX);
+			LEDgate.setTranslateY(dY);
+		});
+		LEDgate.setOnMouseClicked(e -> {
+			if(connectInput) {
+				setActionLabelText("LED has no outputs");
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(LEDgate, currentGate);
+				connectOutput = false;
+			} else {
+				System.out.println(e.getX());
+				System.out.println(e.getY());
+				currentGate = LEDgate;
+				setSelectedGateText(LEDgate.getID());
+		}});
+		circuitPane.getChildren().addAll(LEDgate);
+		currentCircuit.addNode(LEDgate);
+		setActionLabelText("LED created");
+	}
+	
+	public void createSwitch() {
+		Compuerta switchGate = new Switch("Switch" + currentCircuit.getSize());
+		switchGate.setOnMousePressed(e -> {
+			mouseCoordinateX = e.getSceneX();
+			mouseCoordinateY = e.getSceneY();
+			gateCoordinateX = switchGate.getTranslateX();
+			gateCoordinateY = switchGate.getTranslateY();});
+		switchGate.setOnMouseDragged(e -> {
+			double X = e.getSceneX() - mouseCoordinateX;
+			double Y = e.getSceneY() - mouseCoordinateY;
+			double dX = gateCoordinateX + X;
+			double dY = gateCoordinateY + Y;
+			switchGate.setTranslateX(dX);
+			switchGate.setTranslateY(dY);
+		});
+		switchGate.setOnMouseClicked(e -> {
+
+			if(connectInput) {
+				inputConnectGates(switchGate, currentGate);
+				connectInput = false;
+			} else if (connectOutput) {
+				outputConnectGates(switchGate, currentGate);
+				connectOutput = false;
+			} else {
+			if (switchGate.getState()) {
+				switchGate.deactivateGate();
+			} else {
+				switchGate.activateGate();
+			}
+			System.out.println(e.getX());
+			System.out.println(e.getY());
+			currentGate = switchGate;
+			setSelectedGateText(switchGate.getID());
+			}});
+		circuitPane.getChildren().addAll(switchGate);
+		currentCircuit.addNode(switchGate);
+		setActionLabelText("Switch created");
+	}
+	
+	private void testingMethod() {
+		if (currentCircuit.getSize() != 0) {
+			for(int Pos = 1; Pos <= currentCircuit.getSize(); Pos++) {
+				System.out.println(currentCircuit.getNodeInPosition(Pos).getData().getID());
+			}
+		}
+	}
+	
+	public void connectGateInput() {
+		if (currentGate == null) {
+			setActionLabelText("Select a gate first");
+		} else {
+		if (connectOutput) {
+			connectOutput = false;
+		}
+		connectInput = true;
+		setActionLabelText("Select target gate");
+	}
+		}
+	
+	public void connectGateOutput() {
+		if (currentGate == null) {
+			setActionLabelText("Select a gate first");
+		} else {
+		if (connectInput) {
+			connectInput = false;
+		}
+		connectOutput = true;
+		setActionLabelText("Select target gate");
+	}}
+	
+	private void inputConnectGates(Compuerta targetGate, Compuerta Gate) {
+		Gate.connectInput(targetGate);
+		Line cable = new Line();
+		cable.setStartX(targetGate.getTranslateX() + 100);
+		cable.setStartY(targetGate.getTranslateY() + 50);
+		cable.setEndX(Gate.getTranslateX());
+		cable.setEndY(Gate.getTranslateY() + 50);
+		cable.setStrokeWidth(2);
+		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+		Label Input = new Label("I<" + currentCircuit.getSize() + ">");
+		Input.setTranslateX(Gate.getTranslateX() - 20);
+		Input.setTranslateY(Gate.getTranslateY() + 10*Gate.getInputListSize());
+		Label Output = new Label("O<" + currentCircuit.getSize() + ">");
+		Output.setTranslateX(targetGate.getTranslateX() + 100);
+		Output.setTranslateY(targetGate.getTranslateY() + 10*Gate.getOutputListSize());
+		circuitPane.getChildren().addAll(cable);
+		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "input");
+	}
+	private void outputConnectGates(Compuerta targetGate, Compuerta Gate) {
+		Gate.connectOutput(targetGate);
+		Line cable = new Line();
+		cable.setStartX(targetGate.getTranslateX());
+		cable.setStartY(targetGate.getTranslateY()+50);
+		cable.setEndX(Gate.getTranslateX()+100);
+		cable.setEndY(Gate.getTranslateY()+50);
+		cable.setStrokeWidth(2);
+		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+		circuitPane.getChildren().addAll(cable);
+		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "output");
+	}
+	
+	public void deleteGate() {
+		currentGate.deleteSelf();
+		currentCircuit.deleteNode(currentGate);
+		circuitPane.getChildren().removeAll(currentGate);
+		currentGate = null;
+		setActionLabelText("Gate deleted");
+		setSelectedGateText("");
+	}
+	
+	public void saveCircuit() {
+		savedGate = new CustomGate("CustomGate", currentCircuit);
+		gateCUSTOM.setOpacity(1);
+		currentCircuit = new List();
+		circuitPane.getChildren().clear();	
+		setActionLabelText("Circuit Saved!");
+		setSelectedGateText("No gate selected");
+	}
+	
+	public void showTruthTable() {
+		
+	}
+	
+	private void setActionLabelText(String text) {
+		actionTaken = text;
+		selectedNewGate.setText(actionTaken);
+	}
+	
+	private void setSelectedGateText(String text) {
+		gateSelected = "Selected gate: "+text;
+		selectedGate.setText(gateSelected);
+	}
+ 
+}

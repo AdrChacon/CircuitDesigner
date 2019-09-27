@@ -1,0 +1,9 @@
+package ObserverExample;
+
+public abstract class Cliente {
+	protected Libreria subject;
+	protected int cantidadActual;
+	
+	public abstract void update();
+
+}

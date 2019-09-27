@@ -1,0 +1,45 @@
+package estructuras;
+
+import logica.Compuerta;
+
+public class DoubleLinkedList {
+	private Node head;
+	private Node last;
+	private int size;
+	
+	public DoubleLinkedList() {
+		this.head = null;
+		this.last = null;
+		this.size = 0;
+	}
+	
+	/**
+	 * Añade un nodo al final de la lista
+	 * @param data
+	 */
+	public void addNode(Compuerta data) {
+		if (head == null) {
+			Node newNode = new Node(data);
+			this.head = newNode;
+			this.last = newNode;
+			
+		} else {
+			Node current = this.head;
+			while(current.getNext() != null) {
+				current = current.getNext();
+			}
+			Node newNode = new Node(data);
+			newNode.setPrev(current);
+			current.setNext(newNode);
+			this.last = newNode;
+		}
+		this.size++;
+		
+	}
+	
+	public void binaryCounter() {
+		Node current = this.head;
+		while(current.getNext() != null && current.getNext().getData().get)
+	}
+
+}

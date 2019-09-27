@@ -1,0 +1,56 @@
+package ObserverExample;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Libreria {
+	private List<Cliente> observers = new ArrayList<Cliente>();
+	private int GameOfThrones;
+	private int LordOfTheRings;
+	private int DiscWorld;
+	
+	public Libreria() {
+		GameOfThrones = 0;
+		LordOfTheRings = 0;
+		DiscWorld = 0;
+	}
+	
+	public int getGameOfThrones() {
+		return GameOfThrones;
+	}
+	
+	public int getLordOfTheRings() {
+		return LordOfTheRings;
+	}
+	
+	public int getDiscWorld() {
+		return DiscWorld;
+	}
+	
+	public void restockGOT() {
+		GameOfThrones++;
+		notifyObservers();
+	}
+	
+	public void restockLOTR() {
+		LordOfTheRings++;
+		notifyObservers();
+	}
+	
+	public void restockDW() {
+		DiscWorld++;
+		notifyObservers();
+	}
+	
+	public void attachA(Cliente observer) {
+		observers.add(observer);
+	}
+	
+	public void notifyObservers() {
+		for (Cliente observer: observers) {
+			observer.update();
+		}
+	}
+	
+
+}

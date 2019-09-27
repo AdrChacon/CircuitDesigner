@@ -1,0 +1,77 @@
+package interfaz;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Test extends Application{
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("Testing");
+		
+		Button cButton = new Button();
+		cButton.setText("Press center button");
+		cButton.setOnAction(e -> System.out.println("Hello, I'm at the center"));
+		
+		Button bButton = new Button();
+		bButton.setText("Press bottom button");
+		bButton.setOnAction(e -> System.out.println("Hello, I'm at the bottom"));
+		
+		Button tButton = new Button();
+		tButton.setText("Press top button");
+		tButton.setOnAction(e -> System.out.println("Hello, I'm at the top"));
+		
+		Button lButton = new Button();
+		lButton.setText("Press left button");
+		lButton.setOnAction(e -> System.out.println("Hello, I'm at the left"));
+		
+		Button rButton = new Button();
+		rButton.setText("Press right button");
+		rButton.setOnAction(e -> System.out.println("Hello, I'm at the right"));
+		
+		BorderPane layout = new BorderPane();
+		StackPane bottom = new StackPane();
+		StackPane Top = new StackPane();
+		VBox Right = new VBox();
+		HBox Left = new HBox();
+		StackPane center = new StackPane();
+		
+		layout.setTop(Top);
+		layout.setBottom(bottom);
+		layout.setRight(Right);
+		layout.setLeft(Left);
+		layout.setCenter(center);
+		
+		center.getChildren().add(cButton);
+		Top.getChildren().add(tButton);
+		bottom.getChildren().add(bButton);
+		Right.getChildren().add(rButton);
+		Left.getChildren().add(lButton);
+		
+		layout.setAlignment(bottom, Pos.CENTER);
+		layout.setAlignment(center, Pos.CENTER);
+		layout.setAlignment(Top, Pos.CENTER);
+		layout.setAlignment(Right, Pos.CENTER);
+		layout.setAlignment(Left, Pos.CENTER);
+		
+		Scene scene = new Scene(layout, 300, 250);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	
+
+}

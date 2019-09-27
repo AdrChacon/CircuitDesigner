@@ -1,0 +1,16 @@
+package ObserverExample;
+
+public class DWclient extends Cliente {
+	
+	public DWclient(Libreria subject) {
+		this.subject = subject;
+		this.subject.attach(this);
+	}
+	
+	public void update() {
+		if (subject.getDiscWorld() > 0) {
+			System.out.println("DW Client: Thank you! I'll be grabbing a copy soon");
+		}
+	}
+
+}

@@ -1,0 +1,38 @@
+package ObserverExample;
+
+
+/**
+ *  Esta es la clase concreta DWclient, estos son los observadores interesados en los libros de
+ *  Discworld.
+ * @author Chacón Campos
+ *
+ */
+public class DWclient extends Cliente {
+	/**
+	 * 
+	 */
+	public DWclient(Libreria subject) {
+		this.subject = subject;
+		this.subject.attach(this);
+		this.cantidadActual = subject.getDiscWorld();
+	}
+	/**
+	 * 
+	 */
+	public void update() {
+		if (cantidadActual == 0 && subject.getDiscWorld() > 0) {
+			System.out.println("DW Client: Thank you! I'll be grabbing a copy soon");
+		}
+		this.cantidadActual = subject.getDiscWorld();
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void buyBook() {
+		subject.sellDW();
+		
+	}
+
+}

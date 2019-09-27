@@ -1,0 +1,24 @@
+package ObserverExample;
+
+public class GoTclient extends Cliente{
+	
+	public GoTclient(Libreria subject) {
+		this.subject = subject;
+		this.subject.attach(this);
+		this.cantidadActual = subject.getGameOfThrones();
+	}
+	
+	public void update() {
+		if (cantidadActual == 0 && subject.getGameOfThrones() > 0) {
+			System.out.println("GOT Client: Perfect! I'll go get a copy right now");
+		}
+		this.cantidadActual = subject.getGameOfThrones();
+	}
+
+	@Override
+	public void buyBook() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

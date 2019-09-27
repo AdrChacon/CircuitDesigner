@@ -1,0 +1,26 @@
+package interfaz;
+
+import estructuras.List;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class TruthTable {
+	private List circuitry;
+	private List inputsList;
+	
+	public TruthTable(List circuit) {
+		this.circuitry = circuit;
+		this.inputsList = circuit.findInputGates();
+	}
+	
+	public void launch() {
+		
+	}
+
+}

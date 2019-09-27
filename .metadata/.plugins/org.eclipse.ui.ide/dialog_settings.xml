@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\luzha_000\Documents\GitHub\IIS2019-TrabajoExtraclase1"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\Sorting-algorithms-demo"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\Proyecto-1-Circuit-Designer"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\Datos1_Proyecto1"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\Logic-Gate-Simulator"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\Proyecto-1-Circuit-Designer\Proyecto1"/>
+		<item value="C:\Users\luzha_000\Documents\GitHub\CE1103-CircuitDesigner"/>
+	</list>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.fx.ide.jdt.ui.javafx" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.fx.ide"/>
+		</list>
+	</section>
+</section>

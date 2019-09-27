@@ -1,0 +1,8 @@
+package ObserverExample;
+
+public abstract class Cliente {
+	protected Biblioteca biblioteca;
+	
+	public abstract void update();
+
+}

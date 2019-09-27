@@ -1,0 +1,5 @@
+package ObserverExample;
+
+public abstract class Cliente {
+
+}

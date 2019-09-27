@@ -1,0 +1,18 @@
+package interfaz;
+
+import estructuras.List;
+
+public class TruthTable {
+	private List circuitry;
+	private List inputsList;
+	
+	public TruthTable(List circuit) {
+		this.circuitry = circuit;
+		this.inputsList = circuit.findInputGates();
+	}
+	
+	public void launch() {
+		
+	}
+
+}

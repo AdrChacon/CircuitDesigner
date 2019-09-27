@@ -1,0 +1,24 @@
+package logica;
+
+public class LED extends Compuerta{
+
+	public LED(String gateId) {
+		super(gateId);
+	}
+
+	@Override
+	public void verifyState() {
+		if (inputList.getActive() == 0){
+			this.status = false;
+		} else {
+			this.status = true;
+		}
+		
+	}
+
+	@Override
+	public boolean getState() {
+		return this.status;
+	}
+
+}

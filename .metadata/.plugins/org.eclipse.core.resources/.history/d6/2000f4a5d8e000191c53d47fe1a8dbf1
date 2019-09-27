@@ -1,0 +1,131 @@
+package logica;
+
+import estructuras.List;
+import javafx.scene.image.ImageView;
+
+/**
+ * @author Chacón Campos
+ * Clase abstracta de las compuertas lógicas
+ */
+public abstract class Compuerta extends ImageView{
+ protected boolean status;
+ protected List inputList;
+ protected List outputList;
+ protected String ID;
+ protected String type;
+
+ public Compuerta(String gateId) {
+	 ID = gateId;
+	 status = false;
+	 inputList = new List();
+	 outputList = new List();
+ }
+ public String getID() {
+	 return this.ID;
+ }
+ 
+ private void connectFromGate(Compuerta gate) {
+	 inputList.addNode(gate);
+ }
+ 
+ private void connectToGate(Compuerta gate) {
+	 outputList.addNode(gate);
+ }
+ 
+ /**
+  * Cuando se conecta una nueva salida a una compuerta
+  */
+ public void connectOutput(Compuerta newOutput) {
+	 this.connectToGate(newOutput);
+	 newOutput.connectFromGate(this);
+	 this.notifyAllGates();
+	 newOutput.notifyAllGates();
+ }
+ /**
+  * Cuando se conecta una nueva entrada a una compuerta
+  */
+ public void connectInput(Compuerta newInput) {
+	 this.connectFromGate(newInput);
+	 newInput.connectToGate(this);
+	 this.notifyAllGates();
+	 newInput.notifyAllGates();
+ }
+ /**
+  * Función para notificar a todas las salidas (Observer, subject.notifyObservers())
+  */
+ public void notifyAllGates() {
+	 if (outputList.getSize() != 0) {
+		 for (int Pos = 1; Pos <= outputList.getSize(); Pos++) {
+			 outputList.getNodeInPosition(Pos).getData().verifyState();
+		 }
+	 }
+ }
+
+ /**
+  * Método "activa" la compuerta
+  */
+ public void activateGate() {
+	 this.status = true;
+	 this.notifyAllGates();
+ }
+ 
+ /**
+  * Método "desactiva" la compuerta
+  */
+ public void deactivateGate() {
+	 this.status = false;
+	 this.notifyAllGates();
+ }
+ 
+ /**
+  * Función para "actualizar" las compuertas (Observer, observer.update())
+  */
+ public abstract void verifyState();
+ 
+ public abstract boolean getState();
+ 
+ /**
+  * Retorna el tamaño de la lista de inputs de la compuerta
+  * @return Int
+  */
+ public int getInputListSize() {
+	 return this.inputList.getSize();
+ }
+ 
+ /**
+  * Retorna la lista de inputs de la compuerta
+  * @return List
+  */
+ public List getInputList() {
+	 return this.inputList;
+ }
+ 
+ /**
+  * Retorna el tamaño de la lista de inputs de la compuerta
+  * @return
+  */
+ public int getOutputListSize() {
+	 return outputList.getSize();
+ }
+ 
+ /**
+  * Retorna la lista de los outputs de la compuerta
+  * @return
+  */
+ public List getOutputList() {
+	 return this.outputList;
+ }
+ 
+ public void deleteSelf() {
+ 	for (int i = 1; i <= outputList.getSize(); i++) {
+ 		if (outputList.getNodeInPosition(i).getData().getOutputList().getHead() != null) {
+ 			outputList.getNodeInPosition(i).getData().getInputList().deleteNode(this);	
+ 		}
+ 		
+ 	}
+ 	for (int i = 1; i <= inputList.getSize(); i++) {
+ 		if (inputList.getNodeInPosition(i).getData().getOutputList().getHead() != null)
+ 		inputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);
+ 		}
+ 	}
+ }

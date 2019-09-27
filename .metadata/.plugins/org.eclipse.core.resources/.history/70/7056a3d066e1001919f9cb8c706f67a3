@@ -1,0 +1,77 @@
+package interfaz;
+
+import java.util.Iterator;
+
+import estructuras.List;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import logica.Compuerta;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class TruthTable {
+	private List circuitry;
+	private List inputsList;
+	private int rows;
+	private int columns;
+	private TableView<ObservableList> table;
+	
+	public TruthTable(List circuit) {
+		this.circuitry = circuit;
+		this.inputsList = circuit.findInputGates();
+		this.rows = (int) Math.pow(2, inputsList.getSize());
+		this.columns = circuitry.getSize();
+		table = new TableView<ObservableList>();
+	}
+	public void launch() {
+		inputsList.resetBinaryCounter();
+		String truthTable = "";
+		for (int i = 1; i == circuitry.getSize(); i++) {
+			for (int j = 1; j == circuitry.getSize(); j++) {
+				if (j == circuitry.getSize()) {
+					truthTable += circuitry.getNodeInPosition(j).getData().getID() + ": " + circuitry.getNodeInPosition(j).getData().getActive();
+				} else {
+					truthTable+= circuitry.getNodeInPosition(j).getData().getID() + ": " + circuitry.getNodeInPosition(j).getData().getActive() + ", ";
+				}
+			}
+			System.out.println(truthTable);
+			inputsList.pseudoBinaryCounter();
+			truthTable = "";
+		}
+	}
+	
+	/*
+	public void launch() {
+		for (int i = 1; i <= columns; i++) {
+			TableColumn<Compuerta, String> column = new TableColumn<>(circuitry.getNodeInPosition(i).getData().getID());
+			column.setCellValueFactory(new PropertyValueFactory<Compuerta, String>("active"));
+			table.setItems(truthCalculator(i));
+			table.getColumns().addAll(column);
+		}
+		
+		VBox vbox = new VBox(table);
+		
+		Scene scene = new Scene(vbox);
+		
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	private ObservableList<Compuerta> truthCalculator(int pos){
+		ObservableList<Compuerta> info = FXCollections.observableArrayList();
+		for(int i = 1; i <= rows; i++) {
+			Compuerta currentState = circuitry.getNodeInPosition(pos).getData();
+			info.add(currentState);
+			circuitry.pseudoBinaryCounter();
+		}
+		circuitry.resetBinaryCounter();
+		return info;
+	}
+	*/
+}
