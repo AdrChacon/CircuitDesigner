@@ -24,9 +24,9 @@ public class ScreenController{
 	public List currentCircuit = new List();
 	public Compuerta currentGate;
 	public boolean connectInput = false, connectOutput = false;
-	public Compuerta savedGate;
-	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
+	public CustomGate savedGate;
 	public ImageView gateCUSTOM;
+	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
 	public Random r = new Random();
 	private int counter = 0;
 	
@@ -460,7 +460,7 @@ public class ScreenController{
 	}
 	
 	public void saveCircuit() {
-		/*savedGate = new CustomGate("CustomGate", currentCircuit);
+		savedGate = new CustomGate("CustomGate", currentCircuit);
 		gateCUSTOM.setOpacity(1);
 		currentCircuit = new List();
 		circuitPane.getChildren().clear();	
@@ -470,7 +470,7 @@ public class ScreenController{
 		setSelectedGateText("No gate selected");
 		for(int i = 1; i <= savedGate.getCircuitry().getSize(); i++) {
 			System.out.println(savedGate.getCircuitry().getNodeInPosition(i).getData().getID());
-		}*/
+		}
 		counter = 0;
 		currentCircuit = new List();
 		circuitPane.getChildren().clear();	

@@ -18,14 +18,14 @@ public class TruthTable {
 	
 	public TruthTable(List circuit) {
 		this.circuitry = circuit;
-		this.circuitry.deleteAllNodesOfType(LED);
+		this.circuitry.deleteAllNodesOfType("LED");
 		this.inputsList = circuit.findInputGates();
-		this.rows = 2**inputsList.getSize();
+		this.rows = (int) Math.pow(2, inputsList.getSize());
 		this.columns = circuitry.getSize();
+		TableView table = new TableView();
 	}
 	
 	public void launch() {
-		
 	}
 
 }

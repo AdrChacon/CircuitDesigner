@@ -78,8 +78,8 @@ public class List{
 						current.getNext().getData().deleteSelf();
 						current.setNext(current.getNext().getNext());
 					}
-					current = current.getNext();
 				}
+				current = current.getNext();
 			}
 		}
 		return;
