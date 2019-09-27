@@ -117,13 +117,13 @@ public abstract class Compuerta extends ImageView{
  
  public void deleteSelf() {
  	for (int i = 1; i <= outputList.getSize(); i++) {
- 		if (outputList.getNodeInPosition(i).getData().getOutputList() != null) {
- 			outputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);	
+ 		if (outputList.getNodeInPosition(i).getData().getOutputList().getHead() != null) {
+ 			outputList.getNodeInPosition(i).getData().getInputList().deleteNode(this);	
  		}
  		
  	}
  	for (int i = 1; i <= inputList.getSize(); i++) {
- 		if (inputList.getNodeInPosition(i).getData().getOutputList() != null)
+ 		if (inputList.getNodeInPosition(i).getData().getOutputList().getHead() != null)
  		inputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);
  		}
  	}

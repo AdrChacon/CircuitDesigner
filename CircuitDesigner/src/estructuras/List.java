@@ -45,6 +45,8 @@ public class List{
 		Node current = this.head;
 		if (current.getData() == data) {
 			this.head = this.head.getNext();
+			this.size--;
+			return;
 		} else {
 			while (current != null) {
 				if (current.getNext() != null) {
@@ -53,11 +55,13 @@ public class List{
 						} else {
 							current.setNext(current.getNext().getNext());
 							this.size--;
+							return;
 						}
 				} else {
 					current = current.getNext();
 				}
 			}
+			return;
 		}
 	}
 	
