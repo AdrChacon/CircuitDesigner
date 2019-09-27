@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -39,10 +40,15 @@
          <children>
             <Button fx:id="circuitSave" mnemonicParsing="false" onAction="#saveCircuit" text="Save Circuit" />
             <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#showTruthTable" text="Truth Table" />
-            <Region prefHeight="2.0" prefWidth="200.0" />
-            <Label fx:id="selectedNewGate" text="$actionTaken" />
-            <Region prefHeight="0.0" prefWidth="200.0" />
-            <Label fx:id="selectedGate" text="$newGate" />
+            <Region prefHeight="25.0" prefWidth="111.0" />
+            <Label fx:id="selectedNewGate" prefHeight="17.0" prefWidth="284.0" text="$actionTaken">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="selectedGate" prefHeight="17.0" prefWidth="192.0" text="$newGate">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

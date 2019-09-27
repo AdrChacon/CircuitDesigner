@@ -28,8 +28,10 @@ public class ScreenController{
 	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
 	public ImageView gateCUSTOM;
 	public Random r = new Random();
+	private int counter = 0;
 	
 	public void menuClearScreenClicked() {
+		counter = 0;
 		currentCircuit = new List();
 		circuitPane.getChildren().clear();	
 		setActionLabelText("Screen cleared");
@@ -406,7 +408,16 @@ public class ScreenController{
 		cable.setEndY(Gate.getTranslateY() + 50);
 		cable.setStrokeWidth(2);
 		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
-		circuitPane.getChildren().addAll(cable);
+		Label Input = new Label("I<" + counter + ">");
+		Input.setTranslateX(Gate.getTranslateX() - 10);
+		Input.setTranslateY(Gate.getTranslateY() + 10*Gate.getInputListSize());
+		Label Output = new Label("O<" + counter + ">");
+		Output.setTranslateX(targetGate.getTranslateX() + 100);
+		Output.setTranslateY(targetGate.getTranslateY() + 10*targetGate.getOutputListSize());
+		currentGate = null;
+		circuitPane.getChildren().addAll(cable, Input, Output);
+		counter++;
+		setSelectedGateText("No gate selected");
 		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "input");
 	}
 	private void outputConnectGates(Compuerta targetGate, Compuerta Gate) {
@@ -418,7 +429,16 @@ public class ScreenController{
 		cable.setEndY(Gate.getTranslateY()+50);
 		cable.setStrokeWidth(2);
 		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
-		circuitPane.getChildren().addAll(cable);
+		Label Input = new Label("I<" + counter + ">");
+		Label Output = new Label("O<" + counter + ">");
+		Output.setTranslateX(Gate.getTranslateX() + 100);
+		Output.setTranslateY(Gate.getTranslateY() + 10*Gate.getInputListSize());
+		Input.setTranslateX(targetGate.getTranslateX() - 20);
+		Input.setTranslateY(targetGate.getTranslateY() + 10*targetGate.getOutputListSize());
+		currentGate = null;
+		circuitPane.getChildren().addAll(cable, Input, Output);
+		counter++;
+		setSelectedGateText("No gate selected");
 		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "output");
 	}
 	
