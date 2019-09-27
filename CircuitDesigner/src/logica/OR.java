@@ -9,6 +9,7 @@ public class OR extends Compuerta{
 
 	public OR(String gateId) {
 		super(gateId);
+		type = "OR";
 	}
 
 	@Override

@@ -12,15 +12,22 @@ public abstract class Compuerta extends ImageView{
  protected List inputList;
  protected List outputList;
  protected String ID;
+ protected String type;
+ protected int active;
 
  public Compuerta(String gateId) {
 	 ID = gateId;
+	 active = 0;
 	 status = false;
 	 inputList = new List();
 	 outputList = new List();
  }
  public String getID() {
 	 return this.ID;
+ }
+ 
+ public String getType() {
+	 return type;
  }
  
  private void connectFromGate(Compuerta gate) {
@@ -127,4 +134,6 @@ public abstract class Compuerta extends ImageView{
  		inputList.getNodeInPosition(i).getData().getOutputList().deleteNode(this);
  		}
  	}
+ 
+	
  }

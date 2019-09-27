@@ -8,6 +8,7 @@ public class Switch extends Compuerta{
 	
 	public Switch(String gateId) {
 		super(gateId);
+		type = "switch";
 		this.setImage(offSwitch);
 	}
 

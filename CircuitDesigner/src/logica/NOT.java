@@ -9,6 +9,8 @@ public class NOT extends Compuerta{
 	
 	public NOT(String gateId) {
 		super(gateId);
+		active = 1;
+		type = "NOT";
 		this.status = true;
 	}
 
@@ -16,8 +18,10 @@ public class NOT extends Compuerta{
 	public void verifyState() {
 		if(inputList.getActive() >= 1) {
 			this.status = false;
+			active = 0;
 		} else {
 			this.status = true;
+			active = 1;
 		}
 		this.notifyAllGates();
 	}

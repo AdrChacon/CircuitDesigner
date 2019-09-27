@@ -131,7 +131,8 @@ public class ScreenController{
 				} else {
 				inputConnectGates(NOTgate, currentGate);
 				connectInput = false;
-				}} else if (connectOutput) {
+				}
+			} else if (connectOutput) {
 				outputConnectGates(NOTgate, currentGate);
 				connectOutput = false;
 			} else {
@@ -164,9 +165,11 @@ public class ScreenController{
 		});
 		NANDgate.setOnMouseClicked(e -> {
 			if(connectInput) {
-				
+				inputConnectGates(NANDgate, currentGate);
+				connectInput = false;
 			} else if (connectOutput) {
-				
+				outputConnectGates(NANDgate, currentGate);
+				connectOutput = false;
 			} else {
 			currentGate = NANDgate;
 			setSelectedGateText(NANDgate.getID());
@@ -382,11 +385,13 @@ public class ScreenController{
 		} else {
 		if (connectOutput) {
 			connectOutput = false;
+		} else if (connectInput) {
+			connectInput = false;
 		}
 		connectInput = true;
 		setActionLabelText("Select target gate");
-	}
 		}
+	}
 	
 	public void connectGateOutput() {
 		if (currentGate == null) {
@@ -394,10 +399,13 @@ public class ScreenController{
 		} else {
 		if (connectInput) {
 			connectInput = false;
+		} else if (connectOutput) {
+			connectOutput = false;
 		}
 		connectOutput = true;
 		setActionLabelText("Select target gate");
-	}}
+		}
+	}
 	
 	private void inputConnectGates(Compuerta targetGate, Compuerta Gate) {
 		Gate.connectInput(targetGate);
@@ -452,16 +460,27 @@ public class ScreenController{
 	}
 	
 	public void saveCircuit() {
-		savedGate = new CustomGate("CustomGate", currentCircuit);
+		/*savedGate = new CustomGate("CustomGate", currentCircuit);
 		gateCUSTOM.setOpacity(1);
 		currentCircuit = new List();
 		circuitPane.getChildren().clear();	
+		savedGate.getCircuitry().deleteAllNodesOfType("switch");
+		savedGate.getCircuitry().deleteAllNodesOfType("LED");
 		setActionLabelText("Circuit Saved!");
+		setSelectedGateText("No gate selected");
+		for(int i = 1; i <= savedGate.getCircuitry().getSize(); i++) {
+			System.out.println(savedGate.getCircuitry().getNodeInPosition(i).getData().getID());
+		}*/
+		counter = 0;
+		currentCircuit = new List();
+		circuitPane.getChildren().clear();	
+		setActionLabelText("Save not implemented yet, screen cleared instead");
 		setSelectedGateText("No gate selected");
 	}
 	
 	public void showTruthTable() {
-		
+		TruthTable table = new TruthTable(currentCircuit);
+		table.launch();
 	}
 	
 	private void setActionLabelText(String text) {

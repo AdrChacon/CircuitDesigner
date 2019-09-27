@@ -8,6 +8,7 @@ public class LED extends Compuerta{
 
 	public LED(String gateId) {
 		super(gateId);
+		type = "LED";
 		this.setImage(offLED);;
 	}
 

@@ -9,14 +9,17 @@ public class AND extends Compuerta{
 
 	public AND(String gateId) {
 		super(gateId);
+		type = "AND";
 	}
 
 	@Override
 	public void verifyState() {
 		if (inputList.getActive() != inputList.getSize()) {
 			this.status = false;
+			active = 0;
 		} else {
 			this.status = true;
+			active = 1;
 		}
 		this.notifyAllGates();
 	}

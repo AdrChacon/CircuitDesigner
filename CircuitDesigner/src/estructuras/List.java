@@ -65,6 +65,26 @@ public class List{
 		}
 	}
 	
+	public void deleteAllNodesOfType(String type) {
+		Node current = this.head;
+		while (current != null) {
+			if (current.getData().getType().equals(type)) {
+				if (current == this.head) {
+					current.getData().deleteSelf();
+					this.head = this.head.getNext();
+					this.size--;
+				} else {
+					if (current.getNext().getData().getType().equals(type)) {
+						current.getNext().getData().deleteSelf();
+						current.setNext(current.getNext().getNext());
+					}
+					current = current.getNext();
+				}
+			}
+		}
+		return;
+	}
+	
 	/**
 	 * Retornar elemento con dato T
 	 */
@@ -117,5 +137,26 @@ public class List{
 			}
 			return current;
 		}
+	}
+	
+	
+	public List findInputGates() {
+		List gates = new List();
+		for(int i = 1; i <= this.getSize(); i++) {
+			if (this.getNodeInPosition(i).getData().getInputListSize() == 0) {
+				gates.addNode(this.getNodeInPosition(i).getData());
+			}
+		}
+		return gates;
+	}
+	
+	public List findOutputGates() {
+		List gates = new List();
+		for(int i = 1; i <= this.getSize(); i++) {
+			if (this.getNodeInPosition(i).getData().getOutputListSize() == 0) {
+				gates.addNode(this.getNodeInPosition(i).getData());
+			}
+		}
+		return gates;
 	}
 }
