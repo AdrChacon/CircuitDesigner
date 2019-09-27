@@ -11,6 +11,9 @@ public class Launcher extends Application{
 		launch(args);
 	}
 
+	/**
+	 * Inicia el programa
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("Screen.fxml"));

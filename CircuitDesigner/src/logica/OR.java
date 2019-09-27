@@ -16,8 +16,10 @@ public class OR extends Compuerta{
 	public void verifyState() {
 		if (inputList.getActive() == 0){
 			this.status = false;
+			active = "0";
 		} else {
 			this.status = true;
+			active = "1";
 		}
 		this.notifyAllGates();
 	}

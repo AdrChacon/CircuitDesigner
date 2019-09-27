@@ -16,10 +16,10 @@ public class XNOR extends Compuerta{
 	public void verifyState() {
 		if(inputList.getActive()%2 == 0) {
 			this.status = true;
-			active = 1;
+			active = "1";
 		} else {
 			this.status = false;
-			active = 0;
+			active = "0";
 		}
 		this.notifyAllGates();
 	}

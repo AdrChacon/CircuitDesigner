@@ -25,12 +25,14 @@ public class Switch extends Compuerta{
 	
 	public void activateGate() {
 		 this.status = true;
+		 this.active = "1";
 		 this.setImage(onSwitch);
 		 this.notifyAllGates();
 	}
 	
 	public void deactivateGate() {
 		 this.status = false;
+		 this.active = "0";
 		 this.setImage(offSwitch);
 		 this.notifyAllGates();		 
 	}

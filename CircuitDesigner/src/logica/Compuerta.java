@@ -13,27 +13,52 @@ public abstract class Compuerta extends ImageView{
  protected List outputList;
  protected String ID;
  protected String type;
- protected int active;
+ protected String active;
 
  public Compuerta(String gateId) {
 	 ID = gateId;
-	 active = 0;
+	 active = "0";
 	 status = false;
 	 inputList = new List();
 	 outputList = new List();
  }
+ 
+ /**
+  * Regresa el ID de la compuerta
+  * @return ID
+  */
  public String getID() {
 	 return this.ID;
  }
  
+ /**
+  * Regresa el estado actual de la compuerta como un String
+  * @return Estado actual de la compuerta (1 o 0)
+  */
+ public String getActive() {
+	 return this.active;
+ }
+ 
+ /**
+  * Regresa el tipo de la compuerta
+  * @return Tipo de la compuerta (AND, OR, LED, ...)
+  */
  public String getType() {
 	 return type;
  }
  
+ /**
+  * Conecta una compuerta a la lista de inputs de esta compuerta 
+  * @param gate Compuerta a conectar
+  */
  private void connectFromGate(Compuerta gate) {
 	 inputList.addNode(gate);
  }
  
+ /**
+  * Conecta una compuerta a la lista de outputs de esta compuerta
+  * @param gate Compuerta a conectar
+  */
  private void connectToGate(Compuerta gate) {
 	 outputList.addNode(gate);
  }
@@ -72,6 +97,7 @@ public abstract class Compuerta extends ImageView{
   */
  public void activateGate() {
 	 this.status = true;
+	 this.active = "1";
 	 this.notifyAllGates();
  }
  
@@ -80,6 +106,7 @@ public abstract class Compuerta extends ImageView{
   */
  public void deactivateGate() {
 	 this.status = false;
+	 this.active = "0";
 	 this.notifyAllGates();
  }
  
@@ -88,6 +115,11 @@ public abstract class Compuerta extends ImageView{
   */
  public abstract void verifyState();
  
+ 
+ /**
+  * Esta función debe devolver el estado actual de la compuerta
+  * @return Estado
+  */
  public abstract boolean getState();
  
  /**
@@ -122,6 +154,10 @@ public abstract class Compuerta extends ImageView{
 	 return this.outputList;
  }
  
+ /**
+  * Elimina todas las referencias a sí mismo de las compuertas que
+  * la están observando
+  */
  public void deleteSelf() {
  	for (int i = 1; i <= outputList.getSize(); i++) {
  		if (outputList.getNodeInPosition(i).getData().getOutputList().getHead() != null) {

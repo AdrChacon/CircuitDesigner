@@ -16,10 +16,10 @@ public class XOR extends Compuerta{
 	public void verifyState() {
 		if (inputList.getActive()%2 == 1) {
 			this.status = true;
-			active = 1;
+			active = "1";
 		} else {
 			this.status = false;
-			active = 0;
+			active = "0";
 		}
 		this.notifyAllGates();
 	}

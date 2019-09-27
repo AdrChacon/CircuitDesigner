@@ -23,7 +23,8 @@ public class List{
 	}
 	
 	/**
-	 * Añadir nodo
+	 * Añadir nodo al final de la lista
+	 * @param data Compuerta
 	 */
 	public void addNode(Compuerta data) {
 		if (head == null) {
@@ -36,6 +37,22 @@ public class List{
 			current.setNext(new Node(data));
 		}
 		this.size++;
+	}
+	
+	/**
+	 * Añadir nodo al inicio de la lista
+	 * @param data Compuerta
+	 */
+	public void addNodeFirst(Compuerta data) {
+		Node current = new Node(data);
+		if (head == null) {
+			this.head = current;
+		} else {
+			current.setNext(this.head);
+			this.head = current;
+		}
+		this.size++;
+		
 	}
 	
 	/**
@@ -65,6 +82,10 @@ public class List{
 		}
 	}
 	
+	/**
+	 * Elimina todos los nodos en la lista del tipo especificado
+	 * @param type Tipo de nodo que se busca eliminar
+	 */
 	public void deleteAllNodesOfType(String type) {
 		Node current = this.head;
 		while (current != null) {
@@ -79,8 +100,9 @@ public class List{
 						current.setNext(current.getNext().getNext());
 					}
 				}
-				current = current.getNext();
+				
 			}
+			current = current.getNext();
 		}
 		return;
 	}
@@ -101,7 +123,8 @@ public class List{
 	}
 	
 	/**
-	 * Regresa cantidad de nodos "activos"
+	 * Regresa cantidad de compuertas "activas" en la lista
+	 * @return Número de compuertas activas en la lista
 	 */
 	public int getActive() {
 		int active = 0;
@@ -139,7 +162,11 @@ public class List{
 		}
 	}
 	
-	
+	/**
+	 * Encuentra el inicio del circuito y regresa una lista con
+	 * las compuertas
+	 * @return Lista de compuertas iniciales del circuito
+	 */
 	public List findInputGates() {
 		List gates = new List();
 		for(int i = 1; i <= this.getSize(); i++) {
@@ -150,6 +177,11 @@ public class List{
 		return gates;
 	}
 	
+	/**
+	 * Encuentra el final del circuito y regresa una lista con
+	 * las compuertas
+	 * @return Lista de compuertas iniciales del circuito
+	 */
 	public List findOutputGates() {
 		List gates = new List();
 		for(int i = 1; i <= this.getSize(); i++) {
@@ -158,5 +190,40 @@ public class List{
 			}
 		}
 		return gates;
+	}
+	
+	/**
+	 * Activa las compuertas de la lista según su estado actual
+	 * Ej. Si se tienen 3 compuertas desactivadas (0,0,0), las activará
+	 * según una suma binaria invertida; (1,0,0) , (0,1,0) , (1,1,0)...
+	 */
+	public void pseudoBinaryCounter() {
+		Node current = this.head;
+		if (current.getData().getActive().equals("0")) {
+			current.getData().activateGate();
+			return;
+		} else if (current.getData().getActive().equals("1")) {
+			while (current != null) {
+				if (current.getData().getActive().equals("1")) {
+				current.getData().deactivateGate();
+				current	= current.getNext();
+				} else {
+					current.getData().activateGate();
+					return;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Desactiva todas las compuertas de la lista, de forma que se
+	 * reinicia el "conteo binario"
+	 */
+	public void resetBinaryCounter() {
+		Node current = this.head;
+		for (int i = 1; i <= this.size; i++) {
+			current.getData().deactivateGate();
+			current = current.getNext();
+		}
 	}
 }

@@ -16,10 +16,10 @@ public class NAND extends Compuerta{
 	public void verifyState() {
 		if(inputList.getActive() == inputList.getSize()) {
 			this.status = false;
-			active = 0;
+			active = "0";
 		} else {
 			this.status = true;
-			active = 1;
+			active = "1";
 		}
 		this.notifyAllGates();
 	}

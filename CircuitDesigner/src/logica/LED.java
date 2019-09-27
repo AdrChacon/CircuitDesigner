@@ -16,9 +16,11 @@ public class LED extends Compuerta{
 	public void verifyState() {
 		if (inputList.getActive() == 0){
 			this.status = false;
+			active = "0";
 			this.setImage(offLED);
 		} else {
 			this.status = true;
+			active = "1";
 			this.setImage(this.onLED);
 		}
 		
