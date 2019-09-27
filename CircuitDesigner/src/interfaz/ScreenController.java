@@ -1,6 +1,7 @@
 package interfaz;
 
 import estructuras.List;
+import java.util.Random;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import logica.*;
 
 public class ScreenController{
@@ -24,6 +27,7 @@ public class ScreenController{
 	public Compuerta savedGate;
 	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
 	public ImageView gateCUSTOM;
+	public Random r = new Random();
 	
 	public void menuClearScreenClicked() {
 		currentCircuit = new List();
@@ -395,10 +399,26 @@ public class ScreenController{
 	
 	private void inputConnectGates(Compuerta targetGate, Compuerta Gate) {
 		Gate.connectInput(targetGate);
+		Line cable = new Line();
+		cable.setStartX(targetGate.getTranslateX() + 100);
+		cable.setStartY(targetGate.getTranslateY() + 50);
+		cable.setEndX(Gate.getTranslateX());
+		cable.setEndY(Gate.getTranslateY() + 50);
+		cable.setStrokeWidth(2);
+		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+		circuitPane.getChildren().addAll(cable);
 		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "input");
 	}
 	private void outputConnectGates(Compuerta targetGate, Compuerta Gate) {
 		Gate.connectOutput(targetGate);
+		Line cable = new Line();
+		cable.setStartX(targetGate.getTranslateX());
+		cable.setStartY(targetGate.getTranslateY()+50);
+		cable.setEndX(Gate.getTranslateX()+100);
+		cable.setEndY(Gate.getTranslateY()+50);
+		cable.setStrokeWidth(2);
+		cable.setStroke(Color.rgb(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+		circuitPane.getChildren().addAll(cable);
 		setActionLabelText(targetGate.getID() + " connected to " + Gate.getID() + "output");
 	}
 	
