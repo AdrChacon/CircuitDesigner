@@ -22,15 +22,12 @@ public class ScreenController{
 	
 	public Pane circuitPane;
 	public MenuItem menuClear, menuExit;
-	public Button circuitSave, circuitTruthTable;
+	public Button circuitTruthTable;
 	public Label selectedGate, selectedNewGate;
 	public String gateSelected = "", actionTaken = "";
 	public List currentCircuit = new List();
 	public Compuerta currentGate;
 	public boolean connectInput = false, connectOutput = false;
-	public CustomGate savedGate;
-	public ImageView gateCUSTOM;
-	public Compuerta customMenuGate;
 	private double mouseCoordinateX, mouseCoordinateY, gateCoordinateX, gateCoordinateY, dX, dY;
 	public Random r = new Random();
 	private int counter = 0;
@@ -45,10 +42,6 @@ public class ScreenController{
 		setActionLabelText("Screen cleared");
 		setSelectedGateText("No gate selected");
 		
-	}
-	
-	public void circuitPaneClicked() {
-		testingMethod();
 	}
 	
 	/**
@@ -315,67 +308,11 @@ public class ScreenController{
 		setActionLabelText("XOR gate created");
 	}
 	
-	public void createGateCustom() {
-		CustomGate customGate = savedGate;
-		customGate.setOnMousePressed(e ->{
-			mouseCoordinateX = e.getSceneX();
-			mouseCoordinateY = e.getSceneY();
-			gateCoordinateX = customGate.getTranslateX();
-			gateCoordinateY = customGate.getTranslateY();
-		});
-		customGate.setOnMouseClicked(e -> {
-			if(connectInput) {
-				ContextMenu inputsMenu = new ContextMenu();
-				for (int i = 1; i <= customGate.getInputGates().getSize(); i++) {
-					MenuItem input = new MenuItem();
-					input.setText(customGate.getInputGates().getNodeInPosition(i).getData().getID());
-					customMenuGate = customGate.getInputGates().getNodeInPosition(i).getData();
-					input.setOnAction(new EventHandler<ActionEvent>() {
-						public void handle(ActionEvent e) {
-							inputConnectGates(customMenuGate, currentGate);
-						}
-					});
-					inputsMenu.getItems().addAll(input);
-				}
-				connectInput = false;
-			} else if (connectOutput) {
-				ContextMenu outputsMenu = new ContextMenu();
-				for (int i = 1; i <= customGate.getOutputGates().getSize(); i++) {
-					MenuItem output = new MenuItem();
-					output.setText(customGate.getOutputGates().getNodeInPosition(i).getData().getID());
-					output.setOnAction(new EventHandler<ActionEvent>() {
-						public void handle(ActionEvent e) {
-							outputConnectGates(customMenuGate, currentGate);
-						}
-					});
-					outputsMenu.getItems().addAll(output);
-					
-				}
-				connectOutput = false;
-			} else {
-				setActionLabelText("Cannot select this gate.");
-				
-				
-			}
-		});
-		customGate.setOnMouseDragged(e ->{
-			double X = e.getSceneX() - mouseCoordinateX;
-			double Y = e.getSceneY() - mouseCoordinateY;
-			double dX = gateCoordinateX + X;
-			double dY = gateCoordinateY + Y;
-			customGate.setTranslateX(dX);
-			customGate.setTranslateY(dY);
-		});
-		circuitPane.getChildren().addAll(customGate);
-		currentCircuit.addNode(customGate);
-		setActionLabelText("Customized gate created");
-	}
-	
 	/**
 	 * Crea una compuerta LED en el área de trabajo
 	 */
 	public void createLED() {
-		Compuerta LEDgate = new LED("LED" + currentCircuit.getSize());
+		Compuerta LEDgate = new LED(" LED" + currentCircuit.getSize() + " ");
 		LEDgate.setOnMousePressed(e -> {
 			mouseCoordinateX = e.getSceneX();
 			mouseCoordinateY = e.getSceneY();
@@ -448,10 +385,6 @@ public class ScreenController{
 		circuitPane.getChildren().addAll(switchGate);
 		currentCircuit.addNodeFirst(switchGate);
 		setActionLabelText("Switch created");
-	}
-	
-	private void testingMethod() {
-		
 	}
 	
 	/**
@@ -561,26 +494,7 @@ public class ScreenController{
 		setActionLabelText("Gate deleted");
 		setSelectedGateText("");
 	}
-	
-	public void saveCircuit() {
-//		savedGate = new CustomGate("CustomGate", currentCircuit);
-//		gateCUSTOM.setOpacity(1);
-//		currentCircuit = new List();
-//		circuitPane.getChildren().clear();	
-//		savedGate.getCircuitry().deleteAllNodesOfType("switch");
-//		savedGate.getCircuitry().deleteAllNodesOfType("LED");
-//		setActionLabelText("Circuit Saved!");
-//		setSelectedGateText("No gate selected");
-//		for(int i = 1; i <= savedGate.getCircuitry().getSize(); i++) {
-//			(savedGate.getCircuitry().getNodeInPosition(i).getData().getID());
-//		}
-//		counter = 0;
-//		currentCircuit = new List();
-//		circuitPane.getChildren().clear();	
-//		setActionLabelText("Save not implemented yet, screen cleared instead");
-//		setSelectedGateText("No gate selected");
-	}
-	
+
 	public void showTruthTable() {
 		TruthTable table = new TruthTable(currentCircuit);
 		table.launch();

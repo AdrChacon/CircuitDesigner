@@ -37,10 +37,10 @@ public class TruthTable {
 		vbox.getChildren().add(title);
 		truthTable = "";
 		HBox hbox = new HBox();
-		hbox.setSpacing(2);
+		hbox.setSpacing(5);
 		for (int i = 1; i <= columns; i++) {
 			Label column = new Label();
-			column.setText("| " +circuitry.getNodeInPosition(i).getData().getID());
+			column.setText("|  " +circuitry.getNodeInPosition(i).getData().getID());
 			hbox.getChildren().add(column);
 		}
 		vbox.getChildren().add(hbox);

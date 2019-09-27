@@ -38,8 +38,7 @@
    <bottom>
       <HBox spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <Button fx:id="circuitSave" mnemonicParsing="false" onAction="#saveCircuit" text="Save Circuit" />
-            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#showTruthTable" text="Truth Table" />
+            <Button fx:id="circuitTruthTable" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#showTruthTable" prefHeight="25.0" prefWidth="80.0" text="Truth Table" />
             <Region prefHeight="25.0" prefWidth="111.0" />
             <Label fx:id="selectedNewGate" prefHeight="17.0" prefWidth="284.0" text="$actionTaken">
                <font>
@@ -56,7 +55,7 @@
       </HBox>
    </bottom>
    <center>
-      <Pane fx:id="circuitPane" onMouseClicked="#circuitPaneClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="circuitPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <GridPane prefHeight="689.0" prefWidth="219.0" BorderPane.alignment="CENTER">
@@ -126,14 +125,6 @@
                </GridPane.margin>
                <image>
                   <Image url="@../resources/NOR.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="gateCUSTOM" onMouseClicked="#createGateCustom" opacity="0.5" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-                  <Image url="@../resources/CustomGate.png" />
                </image>
             </ImageView>
             <ImageView fx:id="gateLED" onMouseClicked="#createLED" pickOnBounds="true" preserveRatio="true" scaleX="0.75" scaleY="0.75" GridPane.rowIndex="4">
