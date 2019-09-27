@@ -68,33 +68,4 @@ public class TruthTable {
 		
 	}
 	
-	/*
-	public void launch() {
-		for (int i = 1; i <= columns; i++) {
-			TableColumn<Compuerta, String> column = new TableColumn<>(circuitry.getNodeInPosition(i).getData().getID());
-			column.setCellValueFactory(new PropertyValueFactory<Compuerta, String>("active"));
-			table.setItems(truthCalculator(i));
-			table.getColumns().addAll(column);
-		}
-		
-		VBox vbox = new VBox(table);
-		
-		Scene scene = new Scene(vbox);
-		
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();
-	}
-	
-	private ObservableList<Compuerta> truthCalculator(int pos){
-		ObservableList<Compuerta> info = FXCollections.observableArrayList();
-		for(int i = 1; i <= rows; i++) {
-			Compuerta currentState = circuitry.getNodeInPosition(pos).getData();
-			info.add(currentState);
-			circuitry.pseudoBinaryCounter();
-		}
-		circuitry.resetBinaryCounter();
-		return info;
-	}
-	*/
 }
