@@ -134,15 +134,20 @@ public class ScreenController{
 		NOTgate.setOnMouseClicked(e -> {
 			if(connectInput) {
 				if (NOTgate.getOutputListSize() >= 1) {
-					setActionLabelText("NOT gate allows 1 input only");
+					setActionLabelText("NOT gate allows 1 output only");
 					connectInput = false;
 				} else {
 				inputConnectGates(NOTgate, currentGate);
 				connectInput = false;
 				}
 			} else if (connectOutput) {
-				outputConnectGates(NOTgate, currentGate);
-				connectOutput = false;
+				if (NOTgate.getInputListSize() >= 1) {
+					setActionLabelText("NOT gate allows 1 input only");
+					connectOutput = false;
+				} else {
+					outputConnectGates(NOTgate, currentGate);
+					connectOutput = false;
+				}
 			} else {
 			currentGate = NOTgate;
 			setSelectedGateText(NOTgate.getID());
