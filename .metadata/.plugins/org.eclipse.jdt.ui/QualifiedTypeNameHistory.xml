@@ -33,4 +33,5 @@
 <fullyQualifiedTypeName name="logica.Compuerta"/>
 <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
+<fullyQualifiedTypeName name="javafx.scene.control.ScrollPane"/>
 </qualifiedTypeNameHistroy>
